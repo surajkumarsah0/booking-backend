@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize =require('../connection')
 
-
+try {
 const bookingModel = sequelize.define('Booking', {
     user_name: { type: DataTypes.STRING, allowNull: false },
     user_email: { type: DataTypes.STRING, allowNull: false },
@@ -17,4 +17,7 @@ const bookingModel = sequelize.define('Booking', {
   });
 
 
+} catch (error) {
+    console.error("Error defining booking model:", error);
+}
 module.exports=bookingModel

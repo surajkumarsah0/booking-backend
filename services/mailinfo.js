@@ -1,4 +1,5 @@
 // emailTemplate.js
+
 export const html = (booking, status) => {
   if (!booking || !status) return "";
 
@@ -46,4 +47,4 @@ export const html = (booking, status) => {
       </div>
     </div>
   `;
-};
+}

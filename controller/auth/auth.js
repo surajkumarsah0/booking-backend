@@ -2,7 +2,7 @@ const { sequelize } = require('../../database/connection');
 const userModel = require('../../database/model/user.model');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-
+try {
 const signupUser= async(req,res)=>{
     try{
     if(!req.body){
@@ -31,8 +31,11 @@ const signupUser= async(req,res)=>{
       res.status(500).json({ error: 'Internal server error' });
     }
 }
+} catch (error) {
+    console.error("Error defining signupUser function:", error);
+}
 
-
+try {
 const loginUser = async(req, res) => {
     // Logic to authenticate user and generate JWT token
     try {
@@ -61,6 +64,9 @@ const loginUser = async(req, res) => {
         console.error('Error during login:', error);
         res.status(500).json({ error: 'Internal server error' });
     }
+}
+} catch (error) {
+    console.error("Error defining loginUser function:", error);
 }
 
 module.exports={signupUser,loginUser};

@@ -2,6 +2,7 @@ const bookingModel = require('../../database/model/booking.model');
 const { html } = require('../../services/mailinfo');
 const sequelize = require('../../database/connection').sequelize;
 const { sendMail } = require('../../services/sendingMail');
+try {
 const createBooking = async(req,res)=>{
     if(!req.body){
         return res.status(400).json({error: 'Request body is missing'});
@@ -35,12 +36,20 @@ const createBooking = async(req,res)=>{
     // Logic to handle user (e.g., create user, authenticate, etc.)
 
 }
+} catch (error) {
+    console.error("Error defining createBooking function:", error);
+}   
 
+try {
 const getAllBookings = async(req,res)=>{
     const bookings = await bookingModel.findAll();
     console.log(bookings);
     res.status(200).json(bookings);
 }
+} catch (error) {
+    console.error("Error defining getAllBookings function:", error);
+}
+try {
 const getSingleBooking = async(req,res)=>{
     const {id} = req.params;
     const booking = await bookingModel.findByPk(id);
@@ -49,6 +58,10 @@ const getSingleBooking = async(req,res)=>{
     }
     res.status(200).json(booking);
 }
+} catch (error) {
+    console.error("Error defining getSingleBooking function:", error);
+}
+try {
 const updateBooking = async(req,res)=>{
     // Logic to update a booking
     const {id} = req.params;
@@ -77,6 +90,8 @@ const updateBooking = async(req,res)=>{
 return res.json({ message: 'Booking status updated successfully' })
 
 
+            }
+} catch (error) {
+    console.error("Error defining updateBooking function:", error);
 }
-
 module.exports= {createBooking,getAllBookings,getSingleBooking, updateBooking};

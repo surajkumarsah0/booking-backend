@@ -1,6 +1,6 @@
 const { DataTypes } = require('sequelize');
 const sequelize=require('../connection')
-
+try {
 const userModel=sequelize.define(
     'User',{
         username:{
@@ -17,5 +17,9 @@ const userModel=sequelize.define(
          timestamp:true
     }
 )
+
+} catch (error) {
+    console.error("Error defining user model:", error);
+}
 
 module.exports=userModel

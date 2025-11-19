@@ -1,4 +1,5 @@
 const nodemailer = require('nodemailer');
+try {
 const sendMail =async (mailInfo)=>{
     // mail pathaune logic ya lekhne
     // step 1=> first ma hami le transport banaunu parxa transport vaneko configuration ho
@@ -19,5 +20,8 @@ const sendMail =async (mailInfo)=>{
     
     // step 3=> mail pathaune
     await transporter.sendMail(mailInfo);
+}
+} catch (error) {
+    console.error("Error defining sendMail function:", error);
 }
 module.exports = { sendMail };
